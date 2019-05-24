@@ -22,31 +22,38 @@ class Menu
 end
 
 class PostCreator
-  @markdown_file_paths : Array(String)
+  @markdown_files : Array(String)
 
   def initialize(@posts_directory : String)
     @menu = Menu.new
 
-    @markdown_file_paths =
+    @markdown_files =
       Dir
       .new(posts_directory)
       .children
       .select { |file_name| file_name.ends_with?(".md") }
-      .map { |file_name| posts_directory + File::SEPARATOR + file_name }
 
-    @markdown_file_paths.each { |mfp| @menu.add_post(mfp) }
+    @markdown_files.each { |mfp| @menu.add_post(route_name(mfp)) }
 
-    @markdown_file_paths.each { |file_path| define_route(file_path) }
+    define_routes
   end
 
-  # private def route_names
+  private def route_name(post_file)
+    File.basename(post_file, ".md")
+  end
 
+  private def define_routes
+    paths = @markdown_files.map do |file_name|
+      @posts_directory + File::SEPARATOR + file_name
+    end
+    paths.each { |path| define_route(path) }
+  end
 
   # Given a path from the program's root, set up a route to that post.
   # The path can include slashes, but should start just with the filename, not a
   # dot or a slash or anything.
   private def define_route(post_file)
-    name = File.basename(post_file, ".md")
+    name = route_name(post_file)
     contents = File.new(post_file).gets_to_end
     menu_contents = @menu.render
 
