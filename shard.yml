@@ -5,12 +5,10 @@ authors:
   - Jason Howell <jasonrobot64@gmail.com>
 
 dependencies:
+  html_builder:
+    github: crystal-lang/html_builder
   kemal:
     github: kemalcr/kemal
-
-targets:
-  jasonrobot.com/:
-    main: src/jasonrobot.com/.cr
 
 crystal: 0.25.0
 

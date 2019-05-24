@@ -1,0 +1,20 @@
+.contents {
+    display: flex;
+}
+
+.post {
+    overflow: auto;
+}
+
+h1 {
+    color: red;
+}
+
+.header {
+    background-color: #333;
+}
+
+.header h1 {
+    color: #ccc;
+    text-transform: capitalize;
+}
