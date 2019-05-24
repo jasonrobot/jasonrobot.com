@@ -1,6 +1,7 @@
 <ul>
-    <% @items.each do |item| %>
+    <% @posts.each do |item| %>
     <li>
-        <%= item %>
+        <a href="<%= item %>"><%= item %></a>
     </li>
+    <% end %>
 </ul>

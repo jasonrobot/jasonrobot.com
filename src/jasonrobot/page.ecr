@@ -9,13 +9,7 @@
             <h1>
                 unstructured data ahead
             </h1>
-            <ul>
-                <% %w(foo bar baz).each do |item| %>
-                <li>
-                    <%= item %>
-                </li>
-                <% end %>
-            </ul>
+            <%= menu_contents %>
         </header>
         <main>
             <%= post_contents %>
