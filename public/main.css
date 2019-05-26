@@ -1,20 +1,20 @@
-.contents {
-    display: flex;
+h1,
+h2 {
+    text-transform: capitalize;
 }
 
-.post {
-    overflow: auto;
+header {
 }
 
-h1 {
-    color: red;
-}
-
-.header {
+header h1 {
     background-color: #333;
-}
-
-.header h1 {
     color: #ccc;
     text-transform: capitalize;
+    text-align: center;
+    padding: 1em;
+}
+
+main {
+    overflow: auto;
+    border-top: 3px dashed;
 }

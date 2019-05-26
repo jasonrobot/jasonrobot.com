@@ -29,9 +29,9 @@ class PostCreator
 
     @markdown_files =
       Dir
-      .new(posts_directory)
-      .children
-      .select { |file_name| file_name.ends_with?(".md") }
+        .new(posts_directory)
+        .children
+        .select { |file_name| file_name.ends_with?(".md") }
 
     @markdown_files.each { |mfp| @menu.add_post(route_name(mfp)) }
 
@@ -54,12 +54,12 @@ class PostCreator
   # dot or a slash or anything.
   private def define_route(post_file)
     name = route_name(post_file)
-    contents = File.new(post_file).gets_to_end
-    menu_contents = @menu.render
 
     # I could use kemal's support for layouts here, except since the contents are
     # in markdown files and not ECR, it won't be as easy.
     get "/#{name}" do |env|
+      contents = File.new(post_file).gets_to_end
+      menu_contents = @menu.render
       post_contents = Markdown.to_html contents
       ECR.render("src/jasonrobot/page.ecr")
     end
